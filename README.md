@@ -35,12 +35,14 @@
 
 ## Сборка 
 Angular:
-    - install node.js and npm
-    - npm install -g @angular/cli
-    - ng serve --open
+- install node.js and npm
+- npm install -g @angular/cli
+- ng serve --open
+
 Spring:
-    - start src/main/java/web4/LabApplication
+- start src/main/java/web4/LabApplication.java
+
 БД:
-    - install PostgersSQL on device
-    - start your PostgersSQL server
-    - change username and password in resources/application.properties
+- install PostgersSQL on device
+- start your PostgersSQL server
+- change username and password in resources/application.properties
