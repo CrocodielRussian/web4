@@ -61,15 +61,14 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-// Define genJaxb task for XSD code generation
 tasks.register('genJaxb', JavaExec) {
     group = 'JAXB'
     description = 'Generate Java classes from XSD using xjc'
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'com.sun.tools.xjc.XJCTask'
     args = [
-            '-d', 'src/main/java', // Output directory for generated classes
-            '-p', 'com.example.jaxb', // Package for generated classes
-            'src/main/resources/xsd/point.xsd' // Adjust to your XSD file path
+            '-d', 'src/main/java',
+            '-p', 'com.example.jaxb',
+            'src/main/resources/xsd/point.xsd'
     ]
 }
