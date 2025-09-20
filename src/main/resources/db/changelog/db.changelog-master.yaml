@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-web4.yaml
+  - changeSet:
+      id: 001
+      author: your-name
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 002
+      author: mikle
+      changes:
+        - createTable:
+            tableName: points
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: x
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: y
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: r
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hit
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: time
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_points_user
+                    references: users(id)
