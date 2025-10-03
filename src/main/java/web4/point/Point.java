@@ -20,10 +20,10 @@ public class Point {
     @Column(name = "r")
     private double r;
 
-    @Column(name = "is_hit")
+    @Column(name = "hit", nullable = false)
     private boolean hit;
 
-    @Column(name = "created_at")
+    @Column(name = "time", nullable = false)
     private LocalDateTime time;
 
     @ManyToOne

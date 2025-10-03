@@ -53,14 +53,22 @@ public class PointService {
 
     private User getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username;
-        if (principal instanceof org.springframework.security.core.userdetails.User) {
-            username = ((org.springframework.security.core.userdetails.User) principal).getUsername();
+        
+        if (principal instanceof User) {
+            // Если principal уже является нашим User объектом
+            return (User) principal;
+        } else if (principal instanceof org.springframework.security.core.userdetails.User) {
+            // Если это Spring Security User
+            String username = ((org.springframework.security.core.userdetails.User) principal).getUsername();
+            return userRepository.findByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("User not found: " + username));
+        } else if (principal instanceof String) {
+            // Если это просто строка с именем пользователя
+            return userRepository.findByUsername((String) principal)
+                    .orElseThrow(() -> new RuntimeException("User not found: " + principal));
         } else {
-            username = principal.toString();
+            throw new RuntimeException("Unknown principal type: " + principal.getClass().getName());
         }
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
 
